@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iris Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Analysis Dashboard</h2>
+            <div>
+                <a href="/train" class="btn btn-primary me-2">Train Identification Model</a>
+                <a href="/download-report" class="btn btn-success">Download PDF Report</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5>Summary Statistics</h5>
+                    </div>
+                    <div class="card-body table-responsive">
+                        {{ stats_html | safe }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5>Feature Distributions</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <img src="data:image/png;base64,{{ plots.boxplot }}" class="img-fluid" alt="Boxplot">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5>Pairwise Relationships</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <img src="data:image/png;base64,{{ plots.pairplot }}" class="img-fluid" alt="Pairplot">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mb-5">
+            <a href="/" class="btn btn-outline-secondary">Back to Home</a>
+        </div>
+    </div>
+</body>
+
+</html>

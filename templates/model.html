@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Model Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center mb-4">Identification Tool Training Results</h2>
+        
+        <div class="row text-center mb-4">
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm border-primary">
+                    <h5>Model Accuracy</h5>
+                    <h2 class="text-primary">{{ results.accuracy }}</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm">
+                    <h5>Training Set Size</h5>
+                    <h2>{{ results.train_size }}</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm">
+                    <h5>Testing Set Size</h5>
+                    <h2>{{ results.test_size }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-white"><h5>Confusion Matrix</h5></div>
+                    <div class="card-body text-center">
+                        <img src="data:image/png;base64,{{ results.confusion_matrix }}" class="img-fluid" alt="Confusion Matrix">
+                        <p class="text-muted mt-2 small">Shows how many test samples were correctly (diagonal) vs incorrectly (off-diagonal) classified.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-white"><h5>Classification Report</h5></div>
+                    <div class="card-body table-responsive">
+                        {{ results.report_html | safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="/dashboard" class="btn btn-secondary me-2">Back to Dashboard</a>
+            <a href="/" class="btn btn-outline-secondary">Home</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris Data Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .card { width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .status-text { font-weight: bold; min-height: 24px; }
+    </style>
+</head>
+<body>
+    <div class="card p-5 text-center">
+        <h1 class="mb-4">Iris Data Manager</h1>
+        <p class="text-muted mb-4">Welcome to the Iris Dataset Analysis Tool. Please ensure the database is connected before proceeding.</p>
+
+        <div class="d-grid gap-3">
+            <button onclick="checkConnection()" class="btn btn-outline-primary btn-lg">Check Database Connection</button>
+            <button onclick="startAnalysis()" class="btn btn-success btn-lg" id="btn-analyze" disabled>Initialize Analysis & Dashboard</button>
+        </div>
+
+        <div class="mt-4">
+            <p id="status" class="status-text text-muted">Ready...</p>
+        </div>
+    </div>
+
+    <script>
+        async function checkConnection() {
+            const statusText = document.getElementById("status");
+            const analyzeBtn = document.getElementById("btn-analyze");
+            
+            statusText.innerText = "Checking connection...";
+            statusText.className = "status-text text-warning";
+
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+
+                if (data.status === "success") {
+                    statusText.innerText = "✓ " + data.message;
+                    statusText.className = "status-text text-success";
+                    analyzeBtn.disabled = false;
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                statusText.innerText = "✗ Connection Failed: " + error.message;
+                statusText.className = "status-text text-danger";
+                analyzeBtn.disabled = true;
+            }
+        }
+
+        async function startAnalysis() {
+            const statusText = document.getElementById("status");
+            statusText.innerText = "Initializing analysis modules...";
+            statusText.className = "status-text text-primary";
+            await new Promise(r => setTimeout(r, 800));
+            window.location.href = "/dashboard";
+        }
+    </script>
+</body>
+</html>
