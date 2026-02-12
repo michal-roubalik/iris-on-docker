@@ -4,7 +4,7 @@
 [![Docker](https://img.shields.io/badge/docker-automated-blue)](https://www.docker.com/)
 [![Python](https://img.shields.io/badge/python-3.11-yellow)](https://www.python.org/)
 
-**[View Live Deployment](https://iris-app.onrender.com)** *(Note: As this runs on a free-tier server, it may take ~50 seconds to wake up on the first visit.)*
+**[View Live Deployment](https://iris-on-docker.onrender.com)** *(Note: As this runs on a free-tier server, it may take ~50 seconds to wake up on the first visit.)*
 
 ---
 
