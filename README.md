@@ -1,4 +1,4 @@
-# Iris Analysis Tool & ML Pipeline
+# Iris Analysis Tool & ML Pipeline On Docker
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://iris-app.onrender.com)
 [![Docker](https://img.shields.io/badge/docker-automated-blue)](https://www.docker.com/)
